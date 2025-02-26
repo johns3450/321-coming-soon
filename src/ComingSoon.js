@@ -24,7 +24,7 @@ export default function ComingSoon() {
             const data = { email };
     
             try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbzsF2IqWee5VVYJLrPuJ0uNKMH1MDXfYyr8NZ3xcJB5_PwlIMjo7RE1f99YKzX42Y8LcA/exec', {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbyM4WHTWbWXboeY2E1jNVEiQSAl54MSAiTkGWD0T3dvS6nhR9ITq1hiXcXR5dBV-TtL-Q/exec', {
                     method: 'POST',
                     mode: 'cors',
                     headers: {
