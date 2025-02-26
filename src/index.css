@@ -57,6 +57,21 @@
   }
 }
 
+.bg-animated-gradient-3 {
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  overflow: hidden;
+  z-index: -2;
+  transform-origin: center;
+  background: radial-gradient(circle at center, #f5428d, #3f51b5);
+  background-size: 200% 200%;
+  animation: rotate-gradient 10s linear infinite;
+}
+
+
 .bg-animated-gradient {
   position: absolute;
   top: -100%;
@@ -64,9 +79,9 @@
   width: 300%;
   height: 300%;
   overflow: hidden;
-  z-index: -1;
+  z-index: -3;
   transform-origin: center;
-  background: radial-gradient(circle at center, #1a237e, #3f51b5, #8e24aa, #311b92);
+  background: radial-gradient(circle at center, #1a237e, #3f51b5, #8e24aa, #b71c1c, #311b92);
   background-size: 200% 200%;
   animation: rotate-gradient 25s linear infinite;
 }
@@ -78,9 +93,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(63, 81, 181, 0.3), rgba(58, 73, 180, 0.2), rgba(92, 107, 192, 0.3));
+  background: linear-gradient(135deg, rgba(63, 81, 181, 0.3), rgba(58, 73, 180, 0.2), rgba(92, 107, 192, 0.3), rgba(183, 28, 28, 0.2));
   background-size: 200% 200%;
-  animation: move-diagonal 12s ease-in-out infinite;
+  animation: move-diagonal 5s ease-in-out infinite;
   mix-blend-mode: overlay;
 }
 
@@ -92,6 +107,6 @@
   width: 100%;
   height: 100%;
   background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent);
-  animation: subtle-glow 17s ease-in-out infinite;
+  animation: subtle-glow 15s ease-in-out infinite;
   mix-blend-mode: soft-light;
 }

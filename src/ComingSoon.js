@@ -132,6 +132,15 @@ export default function ComingSoon() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 3, ease: "easeInOut" }}
             />
+
+                        {/* Multi-Layered Animated Gradient Background */}
+                        <motion.div 
+                className="bg-animated-gradient-2"
+                initial={{ opacity: 0.2 }}
+                animate={{ opacity: 0.2 }}
+                transition={{ duration: 3, ease: "easeInOut" }}
+            />
+
         </div>
     );
 }
