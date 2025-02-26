@@ -24,14 +24,14 @@ export default function ComingSoon() {
             const data = { email };
     
             try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbx1ENX8gaW3pBEAxMF660Sy06DIoE_vyNKWs6RJ7R1kZoK7mtlRRo6t5TiPx0q1JUsl9g/exec', {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbzsF2IqWee5VVYJLrPuJ0uNKMH1MDXfYyr8NZ3xcJB5_PwlIMjo7RE1f99YKzX42Y8LcA/exec', {
                     method: 'POST',
-                    mode: 'no-cors',
+                    mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data)
-                });
+                });                
     
                 // Check if the response is OK
                 if (response.ok) {
