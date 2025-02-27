@@ -16,35 +16,36 @@ export default function ComingSoon() {
         }
     };    
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        // If CAPTCHA is already verified, proceed with form submission
-        if (captchaVerified) {
-            try {
-                // Use GET method with email as a query parameter
-                const response = await fetch(`https://script.google.com/macros/s/AKfycbwEhgmADTmhSVVVo4KoR5KuObx7JDs_FE2CDSF1k-e5mPkTl5Vtq8ZbiR68OQkoy8E6ng/exec?email=${encodeURIComponent(email)}`, {
-                    method: 'GET',  // Ensure GET method is used
-                });
-    
-                // Check if the response is OK
-                if (response.ok) {
-                    alert('You’re on the list! 🎉');
-                    setEmail('');
-                    setCaptchaVisible(false);
-                    setCaptchaVerified(false);
-                } else {
-                    alert('Something went wrong. Please try again.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was an issue with the signup.');
+const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // If CAPTCHA is already verified, proceed with form submission
+    if (captchaVerified) {
+        try {
+            const response = await fetch(`https://script.google.com/macros/s/AKfycbyeK4pli6yIlsgdY0z9qHBeUB2mUY1I9TFm9nqmMbdo-5O7B7tDilqDTay2UA_DA5tyMg/exec?email=${encodeURIComponent(email)}`, {
+                method: 'GET'
+            });
+
+            // Check if the response is OK
+            if (response.ok) {
+                alert('You’re on the list! 🎉');
+                setEmail('');
+                setCaptchaVisible(false);
+                setCaptchaVerified(false);
+            } else {
+                alert('Something went wrong. Please try again.');
             }
-        } else {
-            // If CAPTCHA is not verified, show the CAPTCHA
-            setCaptchaVisible(true);
+        } catch (error) {
+            console.error('Error:', error);
+            alert('There was an issue with the signup.');
         }
-    };       
+    } else {
+        // If CAPTCHA is not verified, show the CAPTCHA
+        setCaptchaVisible(true);
+    }
+};
+
+    
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center text-white p-4 md:p-8 lg:p-12 overflow-hidden relative">
