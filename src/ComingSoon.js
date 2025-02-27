@@ -19,36 +19,38 @@ export default function ComingSoon() {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-// If CAPTCHA is already verified, proceed with form submission
-if (captchaVerified) {
-    const data = { email };
-
-    try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyeK4pli6yIlsgdY0z9qHBeUB2mUY1I9TFm9nqmMbdo-5O7B7tDilqDTay2UA_DA5tyMg/exec', {
-            method: 'POST',
-            mode: 'no-cors',  // Changed to no-cors
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded' // Changed to form-urlencoded for compatibility
-            },
-            body: new URLSearchParams(data) // Convert data to URLSearchParams
-        });                
-
-        // Since we're using no-cors, we can't check response.ok
-        // Just assume it was successful and give feedback to the user
-        alert('You’re on the list! 🎉');
-        setEmail('');
-        setCaptchaVisible(false);
-        setCaptchaVerified(false);
-
-    } catch (error) {
-        console.error('Error:', error);
-        alert('There was an issue with the signup.');
-    }
-} else {
-    // If CAPTCHA is not verified, show the CAPTCHA
-    setCaptchaVisible(true);
-}
-    };    
+        // If CAPTCHA is already verified, proceed with form submission
+        if (captchaVerified) {
+            const data = { email };
+    
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbxNDXnnTzsADr6O44Dtx8TGtjYJimAR70P7hMczqvtYLyIL2j5fWNZQREyrN8q7rTnMvg/exec', {
+                    method: 'POST',
+                    mode: 'cors', // CORS mode
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams(data)
+                });
+    
+                // Check if the response is OK
+                if (response.ok) {
+                    alert('You’re on the list! 🎉');
+                    setEmail('');
+                    setCaptchaVisible(false);
+                    setCaptchaVerified(false);
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an issue with the signup.');
+            }
+        } else {
+            // If CAPTCHA is not verified, show the CAPTCHA
+            setCaptchaVisible(true);
+        }
+    };      
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center text-white p-4 md:p-8 lg:p-12 overflow-hidden relative">
