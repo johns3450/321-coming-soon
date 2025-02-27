@@ -22,8 +22,9 @@ export default function ComingSoon() {
         // If CAPTCHA is already verified, proceed with form submission
         if (captchaVerified) {
             try {
-                const response = await fetch(`https://script.google.com/macros/s/AKfycbxNDXnnTzsADr6O44Dtx8TGtjYJimAR70P7hMczqvtYLyIL2j5fWNZQREyrN8q7rTnMvg/exec?email=${encodeURIComponent(email)}`, {
-                    method: 'GET'
+                // Use GET method with email as a query parameter
+                const response = await fetch(`https://script.google.com/macros/s/AKfycbwEhgmADTmhSVVVo4KoR5KuObx7JDs_FE2CDSF1k-e5mPkTl5Vtq8ZbiR68OQkoy8E6ng/exec?email=${encodeURIComponent(email)}`, {
+                    method: 'GET',  // Ensure GET method is used
                 });
     
                 // Check if the response is OK
@@ -43,7 +44,7 @@ export default function ComingSoon() {
             // If CAPTCHA is not verified, show the CAPTCHA
             setCaptchaVisible(true);
         }
-    };    
+    };       
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center text-white p-4 md:p-8 lg:p-12 overflow-hidden relative">
