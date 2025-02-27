@@ -28,7 +28,7 @@ export default function ComingSoon() {
         if (captchaVerified) {
             try {
                 // Use GET method with email as a query parameter
-                const response = await fetch(`https://script.google.com/macros/s/AKfycbwEhgmADTmhSVVVo4KoR5KuObx7JDs_FE2CDSF1k-e5mPkTl5Vtq8ZbiR68OQkoy8E6ng/exec?email=${encodeURIComponent(email)}`, {
+                const response = await fetch(`https://script.google.com/macros/s/AKfycbzWNI97FZBWQPH4KhGZZmvPpQaqd3tZBsJoguqHa_md2O7Awk7VVLtUjP21_zl1noRoMA/exec?email=${encodeURIComponent(email)}`, {
                     method: 'GET',
                 });
     
