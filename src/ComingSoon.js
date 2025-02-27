@@ -16,34 +16,49 @@ export default function ComingSoon() {
         }
     };    
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState(''); // 'success' or 'error'
+    
     // If CAPTCHA is already verified, proceed with form submission
-    if (captchaVerified) {
-        try {
-            const response = await fetch(`https://script.google.com/macros/s/AKfycbwEhgmADTmhSVVVo4KoR5KuObx7JDs_FE2CDSF1k-e5mPkTl5Vtq8ZbiR68OQkoy8E6ng/exec?email=${encodeURIComponent(email)}`, {
-                method: 'GET'
-            });
-
-            // Check if the response is OK
-            if (response.ok) {
-                alert('You’re on the list! 🎉');
-                setEmail('');
-                setCaptchaVisible(false);
-                setCaptchaVerified(false);
-            } else {
-                alert('Something went wrong. Please try again.');
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        setMessage(''); // Clear previous messages
+    
+        if (captchaVerified) {
+            try {
+                // Use GET method with email as a query parameter
+                const response = await fetch(`https://script.google.com/macros/s/AKfycbwEhgmADTmhSVVVo4KoR5KuObx7JDs_FE2CDSF1k-e5mPkTl5Vtq8ZbiR68OQkoy8E6ng/exec?email=${encodeURIComponent(email)}`, {
+                    method: 'GET',
+                });
+    
+                // Parse the response as JSON
+                const result = await response.json();
+    
+                // Handle different statuses from the server
+                if (result.status === 'success') {
+                    setMessage(result.message);
+                    setMessageType('success');
+                    setEmail('');
+                    setCaptchaVisible(false);
+                    setCaptchaVerified(false);
+                } else if (result.status === 'duplicate') {
+                    setMessage(result.message);
+                    setMessageType('error');
+                } else {
+                    setMessage('Something went wrong. Please try again.');
+                    setMessageType('error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                setMessage('There was an issue with the signup.');
+                setMessageType('error');
             }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('There was an issue with the signup.');
+        } else {
+            setCaptchaVisible(true);
         }
-    } else {
-        // If CAPTCHA is not verified, show the CAPTCHA
-        setCaptchaVisible(true);
-    }
-};
+    };
+    
 
     
 
@@ -97,13 +112,26 @@ const handleSubmit = async (e) => {
                             </div>
                         )}
 
-                        <motion.button 
-                            className="bg-yellow-600 text-white py-2 px-4 sm:px-6 rounded-full hover:bg-yellow-700 transition-transform transform hover:scale-110"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                        >
-                            {captchaVisible && !captchaVerified ? 'Count Me In' : 'Count Me In'}
-                        </motion.button>
+<motion.button 
+    className="bg-yellow-600 text-white py-2 px-4 sm:px-6 rounded-full hover:bg-yellow-700 transition-transform transform hover:scale-110"
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.9 }}
+>
+    {captchaVisible && !captchaVerified ? 'Count Me In' : 'Count Me In'}
+</motion.button>
+
+{/* Display Success or Error Message */}
+{message && (
+    <motion.div 
+        className={`mt-4 text-lg ${messageType === 'success' ? 'text-green-500' : 'text-red-500'}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+    >
+        {message}
+    </motion.div>
+)}
+
                     </form>
                 </div>
 
