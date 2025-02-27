@@ -22,7 +22,7 @@ const handleSubmit = async (e) => {
     // If CAPTCHA is already verified, proceed with form submission
     if (captchaVerified) {
         try {
-            const response = await fetch(`https://script.google.com/macros/s/AKfycbyeK4pli6yIlsgdY0z9qHBeUB2mUY1I9TFm9nqmMbdo-5O7B7tDilqDTay2UA_DA5tyMg/exec?email=${encodeURIComponent(email)}`, {
+            const response = await fetch(`https://script.google.com/macros/s/AKfycbwEhgmADTmhSVVVo4KoR5KuObx7JDs_FE2CDSF1k-e5mPkTl5Vtq8ZbiR68OQkoy8E6ng/exec?email=${encodeURIComponent(email)}`, {
                 method: 'GET'
             });
 
