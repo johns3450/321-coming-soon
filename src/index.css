@@ -5,15 +5,7 @@
 /* 3D Title Effect with Thick Outline */
 .title-3d-outline {
   color: #fff;
-  text-shadow: 
-    -2px -2px 0 #4A148C,   /* Darker Purple */
-    2px -2px 0 #4A148C,
-    -2px 2px 0 #4A148C,
-    2px 2px 0 #4A148C,
-    -4px -4px 0 #311B92,
-    4px -4px 0 #311B92,
-    -4px 4px 0 #311B92,
-    4px 4px 0 #311B92;
+  text-shadow: 0px 0px 4px #4a148c, 0px 0px 8px #311B92, 0px 0px 12px #311B92, 0px 0px 16px #311B92;
   transform: rotateY(-15deg) rotateX(10deg);
 }
 
