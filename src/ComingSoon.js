@@ -26,7 +26,7 @@ export default function ComingSoon() {
             try {
                 const response = await fetch('https://script.google.com/macros/s/AKfycbxNDXnnTzsADr6O44Dtx8TGtjYJimAR70P7hMczqvtYLyIL2j5fWNZQREyrN8q7rTnMvg/exec', {
                     method: 'POST',
-                    mode: 'cors', // CORS mode
+                    mode: 'no-cors', // CORS mode
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
