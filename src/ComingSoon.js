@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { useEffect } from 'react';
 
 export default function ComingSoon() {
     const [email, setEmail] = useState('');
@@ -18,6 +19,10 @@ export default function ComingSoon() {
 
     const [message, setMessage] = useState('');
     const [messageType, setMessageType] = useState(''); // 'success' or 'error'
+
+    useEffect(() => {
+        document.title = "321 WIN | Launching Soon | Sign Up Now!";
+    }, []);    
     
     // If CAPTCHA is already verified, proceed with form submission
     const handleSubmit = async (e) => {
